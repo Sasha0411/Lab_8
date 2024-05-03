@@ -1,0 +1,72 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace LAB_8
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+
+            Console.WriteLine("Горкун Олександр");
+            
+            // Створити масив розмірністю 100
+            int[] numbers = new int[100];
+
+            // Заповнити масив за допомогою генератора псевдовипадкових чисел
+            Random random = new Random();
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                numbers[i] = random.Next();
+            }
+
+            // Вивести на екран значення масиву
+            Console.WriteLine("Масив:");
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                Console.Write(numbers[i] + " ");
+            }
+            Console.WriteLine();
+
+            // Знайти та вивести мінімальний елемент масиву серед парних елементів масиву
+            int minEven = int.MaxValue;
+            int minEvenIndex = -1;
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                if (i % 2 == 0 && numbers[i] < minEven)
+                {
+                    minEven = numbers[i];
+                    minEvenIndex = i;
+                }
+            }
+
+            if (minEvenIndex == 0)
+            {
+                Console.WriteLine("У масиві немає парних елементів");
+            }
+            else
+            {
+                Console.WriteLine("Мінімальний парний елемент: {0} (індекс: {1})", minEven, minEvenIndex);
+            }
+
+            // Створити другий масив, у якому кожен елемент дорівнює значенню
+            // відповідного елементу першого масиву помноженому на значення мінімального елементу
+            int[] multipliedNumbers = new int[numbers.Length];
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                multipliedNumbers[i] = numbers[i] * minEven;
+            }
+
+            // Вивести на екран значення нового масиву
+            Console.WriteLine("Новий масив:");
+            for (int i = 0; i < multipliedNumbers.Length; i++)
+            {
+                Console.Write(multipliedNumbers[i] + " ");
+            }
+            Console.WriteLine();
+        }
+    }
+}
